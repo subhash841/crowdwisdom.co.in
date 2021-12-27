@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^Blogs$ /YourVoice [L,R=301,QSA,NC]
+    RewriteRule ^Blogs/getBlogs(/.+|$)$ /YourVoice/blog_detail$1 [L,R=301,QSA,NC]
+    RewriteRule ^index.php/Blogs/getBlogs(/.+|$)$ /YourVoice/blog_detail$1 [L,R=301,QSA,NC]
+    RewriteRule ^Poll$ /Predictions [L,R=301,QSA,NC]
+    RewriteRule ^Poll/polldetail(/.+|$)$ /Predictions/details$1 [L,R=301,QSA,NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css|css|woff2)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>

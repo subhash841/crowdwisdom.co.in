@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Do the Backup
+#
+CURTIME=`date "+%Y%m%d-%H%M"`
+find /var/www/backup/* -name 'db*' -mtime +7 -exec rm {} \;
+mysqldump --user=root --password=Cwsunday@123 --all-databases | lzma -c -9 -z >/var/www/backup/db-${CURTIME}.dump.lzma
+
+
